@@ -1,0 +1,100 @@
+.table-heading-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.select-all-container{
+    width: 20%;
+    margin-left: 20px;
+    min-width: 100px;
+}
+.table-container{
+    border: 1px solid grey;
+    margin: 20px  ;
+    border-radius: 20px;
+    padding-bottom: 20px;
+    min-width: 800px;
+}
+.table-column-heading{
+    font-size: 17px;
+    width: 19%;
+    text-align: left;
+    margin-left: 70px;
+}
+.user-details-container{
+    padding: 0;
+    list-style-type: none;
+}
+.label-selectall{
+    margin-left: 8px;
+}
+  
+  .user {
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: #b3e3ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 500px;
+    height: 300px;
+    margin: 20px;
+  }
+  
+  .paginationItem {
+    background: #fff;
+    border: 2px solid #666;
+    padding: 10px 15px;
+    border-radius: 50%;
+    height: 45px;
+    width: 45px;
+    position: relative;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+  
+
+  .paginationItem.active {
+    border: 1px solid #888;
+    color: #888;
+    pointer-events: none;
+  }
+  
+.pagination-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+}
+.pagination-button{
+    border:1px solid #666;
+    height: 45px;
+    width: 60px;
+    color: purple;
+    background-color: transparent;
+    margin-right: 5px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+.pagination-button-unactive{
+    background-color: #ccc8c8;
+    color: white;
+    cursor: not-allowed;
+}
+.pagination-icon{
+    font-size:16px;
+}
+.delete-user{
+    margin-top: 20px;
+    margin-left: 20px;
+    border: none;
+    background-color: transparent;
+    border: 1px solid black;
+    height: 35px;
+    cursor: pointer;
+    width: 120px;
+    border-radius: 8px;
+}
