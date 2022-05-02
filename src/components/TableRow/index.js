@@ -1,8 +1,9 @@
 import {useState} from 'react'
 import './index.css'
+import {AiFillDelete} from 'react-icons/ai'
 
 const TableRow = props => {
-  const {row, addDeleteId} = props
+  const {row, addDeleteId, deleteUserDetails} = props
   const {id, name, email, role} = row
   const [selectedUser, setSelectedUser] = useState('')
 
@@ -11,6 +12,12 @@ const TableRow = props => {
     const selectedUserClass = event.target.checked ? 'selected-user' : ''
     setSelectedUser(selectedUserClass)
     addDeleteId(id)
+  }
+
+  // this is used to directly delete a user
+
+  const deleteUser = () => {
+    deleteUserDetails([id])
   }
   return (
     <li>
@@ -22,7 +29,9 @@ const TableRow = props => {
           <p className="row-content-name margin-left">{name}</p>
           <p className="row-content-name"> {email}</p>
           <p className="row-content-name">{role}</p>
-          <p className="row-content-name">Actions</p>
+          <p className="row-content-name">
+            <AiFillDelete onClick={deleteUser} />
+          </p>
         </label>
       </div>
       <hr />

@@ -9,8 +9,7 @@ import {
 } from 'react-icons/ai'
 import TableRow from '../TableRow'
 
-const TableYes = props => {
-  // getting props from the Home componenet
+const Table = props => {
   const {usersDetails, deleteUserDetails, deleteEveryUser} = props
 
   // Getting length
@@ -65,7 +64,12 @@ const TableYes = props => {
   const displayUsers = usersDetails
     .slice(pagesVisited, pagesVisited + usersPerPage)
     .map(user => (
-      <TableRow addDeleteId={addDeleteId} row={user} key={user.id} />
+      <TableRow
+        deleteUserDetails={deleteUserDetails}
+        addDeleteId={addDeleteId}
+        row={user}
+        key={user.id}
+      />
     ))
 
   const changePage = event => {
@@ -177,4 +181,4 @@ const TableYes = props => {
   )
 }
 
-export default TableYes
+export default Table

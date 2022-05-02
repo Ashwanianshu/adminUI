@@ -44,8 +44,9 @@
   }
   
   .paginationItem {
-    background: #fff;
-    border: 2px solid #666;
+    color: white;
+    background-color: #40b5e4;
+    border: none;
     padding: 10px 15px;
     border-radius: 50%;
     height: 45px;
@@ -57,8 +58,9 @@
   
 
   .paginationItem.active {
-    border: 1px solid #888;
-    color: #888;
+    border: 1px solid #40b5e4;
+    background-color: white;
+    color: gray;
     pointer-events: none;
   }
   
@@ -70,13 +72,14 @@
     margin-top: 40px;
 }
 .pagination-button{
-    border:1px solid #666;
+    border:none;
     height: 45px;
-    width: 60px;
-    color: purple;
-    background-color: transparent;
+    width: 45px;
+    color: white;
+    background-color: #40b5e4;
     margin-right: 5px;
     cursor: pointer;
+    border-radius:50%;
     margin-left: 5px;
 }
 .pagination-button-unactive{
@@ -88,13 +91,14 @@
     font-size:16px;
 }
 .delete-user{
+    color: white;
     margin-top: 20px;
     margin-left: 20px;
+    border-radius: 20px;
     border: none;
-    background-color: transparent;
-    border: 1px solid black;
+    background-color: #d11d53;
+    border: none;
     height: 35px;
     cursor: pointer;
     width: 120px;
-    border-radius: 8px;
 }

@@ -1,7 +1,7 @@
-import {Component} from 'react'
+import React, {Component} from 'react'
 import Loader from 'react-loader-spinner'
 import {BsSearch} from 'react-icons/bs'
-import TableYes from '../Table'
+import Table from '../Table'
 
 import './index.css'
 
@@ -16,14 +16,13 @@ class Home extends Component {
   state = {
     apiStatus: apiStatusConstants.initial,
     usersDetails: [],
+    initialUsersDetails: [],
     searchInput: '',
   }
 
   componentDidMount() {
     this.getUsers()
   }
-
-  // the below code is used to fetch the data from the url
 
   getUsers = async () => {
     this.setState({
@@ -37,6 +36,7 @@ class Home extends Component {
 
       this.setState({
         usersDetails: [...userData],
+        initialUsersDetails: [...userData],
         apiStatus: apiStatusConstants.success,
       })
     } else {
@@ -57,6 +57,7 @@ class Home extends Component {
     }
     this.setState({
       usersDetails: [...dummyUserDetails],
+      initialUsersDetails: [...dummyUserDetails],
     })
   }
 
@@ -75,52 +76,32 @@ class Home extends Component {
 
   usersDetailsEmpty = () => (
     <div className="user-details-empty-container">
-      <img
-        src="https://i.pinimg.com/originals/49/e5/8d/49e58d5922019b8ec4642a2e2b9291c2.png"
-        alt="no data"
-        className="no-data-pic"
-      />
-      <h1>No Data Found</h1>
-      <button
-        className="get-user-again-button"
-        type="button"
-        onClick={this.getUserAgain}
-      >
-        Get User Again
-      </button>
+      <h1>No Results </h1>
     </div>
   )
 
   onChangeSearchInput = event => {
-    this.setState({
-      searchInput: event.target.value,
-    })
+    this.setState(
+      {
+        searchInput: event.target.value,
+      },
+      this.filteredUsers(),
+    )
   }
 
   // with this you can filter the data
 
   filteredUsers = () => {
-    const {searchInput, usersDetails} = this.state
+    const {searchInput, initialUsersDetails} = this.state
 
-    const userDetailsSpecificName = usersDetails.filter(user =>
-      user.name.toLowerCase().includes(searchInput.toLowerCase()),
-    )
-    const userDetailsSpecificEmail = usersDetails.filter(user =>
-      user.email.toLowerCase().includes(searchInput.toLowerCase()),
-    )
-    const userDetailsSpecificRole = usersDetails.filter(user =>
-      user.role.toLowerCase().includes(searchInput.toLowerCase()),
-    )
-    const searchedUserDetails = [
-      ...userDetailsSpecificName,
-      ...userDetailsSpecificEmail,
-      ...userDetailsSpecificRole,
-    ]
-    const uniqueFilteredUSerDetails = searchedUserDetails.filter(
-      (item, pos) => searchedUserDetails.indexOf(item) === pos,
+    const filteredUsers = initialUsersDetails.filter(
+      user =>
+        user.name.toLowerCase().includes(searchInput.toLowerCase()) ||
+        user.email.toLowerCase().includes(searchInput.toLowerCase()) ||
+        user.role.toLowerCase().includes(searchInput.toLowerCase()),
     )
     this.setState({
-      usersDetails: [...uniqueFilteredUSerDetails],
+      usersDetails: filteredUsers,
       apiStatus: apiStatusConstants.success,
       searchInput: '',
     })
@@ -156,8 +137,7 @@ class Home extends Component {
     const {usersDetails} = this.state
     return (
       <div className="bg-container">
-        {this.renderSearchInput()}
-        <TableYes
+        <Table
           deleteUserDetails={this.deleteUserDetails}
           usersDetails={usersDetails}
           deleteEveryUser={this.deleteEveryUser}
@@ -182,9 +162,16 @@ class Home extends Component {
 
   renderUserDetails = () => {
     const {usersDetails} = this.state
-    return usersDetails.length === 0
-      ? this.usersDetailsEmpty()
-      : this.renderUserDetailsTable()
+    const k =
+      usersDetails.length === 0
+        ? this.usersDetailsEmpty()
+        : this.renderUserDetailsTable()
+    return (
+      <div>
+        {this.renderSearchInput()}
+        {k}
+      </div>
+    )
   }
 
   // failure view
